@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<select id="selectLocation">
+		<option>1</option>
+		<option>2</option>
+		<option>3</option>
+		<option>4</option>
+	</select>
+</body>
+<script type="text/javascript">
+	var selectBox = document.getElementById('selectLocation');
+	var optionToMove = selectBox.options[1];
+	// selectBox.insertBefore(optionToMove, selectBox.options[optionToMove.index - 1]);//2往前移一位
+	// selectBox.insertBefore(optionToMove, selectBox.options[optionToMove.index + 2]);//2往后移一位
+	// selectBox.insertBefore(optionToMove, selectBox.options[optionToMove.index + 1])
+	// selectBox.insertBefore(optionToMove, selectBox.options[optionToMove.index + 1])//这两个都相当于没有移动。
+</script>
+</html>

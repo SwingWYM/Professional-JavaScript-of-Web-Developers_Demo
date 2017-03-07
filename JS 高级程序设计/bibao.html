@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	// function test(){
+	// 	for (var i = 0; i <= 10; i++) {
+	// 		setTimeout(sk(i),i*1000);
+	// 	}
+
+	// 	function sk(index){
+	// 		return function() {console.log(index)};
+	// 	}
+	// }
+	// test();
+
+	function test2(){
+		for (var i = 0; i <= 10; i++) {
+			setTimeout(function(){console.log(i);},i*1000);
+		}//马上运行这些代码，只是延后放入执行队列
+
+		
+	}
+	test2();
+
+	// function test1(){
+	// 	for (var i = 0; i <= 10; i++) {
+	// 		setTimeout(function sk(index){
+	// 			return function(){console.log(index)};
+	// 		}(i), i * 1000);
+	// 	}
+	// }
+	// test1();
+
+	function create(){
+		var result = new Array();
+		for (var i = 0; i < 10; i++) {
+			result[i] = function(){
+				return i;
+			}
+		}
+		return result;
+	}
+	function create1(){
+		var result = new Array();
+		for (var i = 0; i < 9; i++) {
+			result[i] = function(num){
+				return function(){
+					return num;
+				}
+			}(i);
+		}
+		return result;
+	}
+
+	// var a = create();
+	// console.log(a[4]());
+	// var b = create1();
+	// console.log(b[4]());
+
+</script>
+</html

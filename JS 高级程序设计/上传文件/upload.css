@@ -1,0 +1,15 @@
+#fileContainer{
+	margin-top: 10px;
+	padding: 20px;
+	line-height: 20px;
+	border: 1px solid #ddd;
+}
+#fileContainer .Delete{
+	color: #0F6AF3;
+	margin-left: 40px;
+	line-height: 25px;
+}
+#fileContainer .Delete:hover{
+	cursor: pointer;
+	text-decoration: underline;
+}

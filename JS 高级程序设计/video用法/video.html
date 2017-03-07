@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>使用HTML5视频标签</title>
+	<script type="text/javascript" src="jquery-1.12.1.min.js"></script>
+</head>
+<body>
+	<div id="myVideo">
+		<video id="video1"  controls="controls" height="500" width="500" poster="2.jpg" autoplay="autoplay" >
+			<source  class="video1"src="MP41.mp4" type="video/mp4" />
+			该浏览器不可播放此视频
+		</video>
+	</div>
+	
+	<div style="margin-top:30px;">
+		<button onclick="playPause()">播放/暂停</button>
+		<button onclick="makeSmall()">小</button>
+		<button onclick="makeNormal()">中</button>
+		<button onclick="makeBig()">大</button>
+		<button id="v2">视频2</button>
+		<!-- <button onclick="changeV3()">视频3</button> -->
+	</div>
+	<script type="text/javascript">
+			var myVideo=document.getElementById("video1");
+			var videoContainer = document.getElementById('myVideo')
+			// var myVideo = $('#video1');
+			
+			$("#v2").on("click",function(){
+				var videoChange = "<video id='video1'  controls='controls' height='500' width='500' poster='2.jpg' autoplay='autoplay' ><source  class='video1'src='2.mp4' type='video/mp4' />该浏览器不可播放此视频</video>";
+				videoContainer.innerHTML = videoChange;
+			});
+			function playPause(){
+				if (myVideo.paused){
+					myVideo.play();
+				}					
+				else{
+					myVideo.pause();
+				}					
+			}
+			function makeSmall(){
+				myVideo.width=300;
+			}
+			function makeNormal(){
+				myVideo.width=500;
+			}
+			function makeBig(){
+				myVideo.width=1000;
+			}
+			
+			
+					
+	</script>	
+</body>
+</html>

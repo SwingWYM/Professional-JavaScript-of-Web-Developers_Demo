@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	function createXHR(){
+		if (typeof XMLHttpRequest != "undefined") {
+			return new XMLHttpRequest();
+		}else if (typeof ActiveXObject != "undefined") {
+			if (typeof arguments.callee.activeXString != "string") {
+				var versions = [ "MSXML2.XMLHttp.6.0", "MSXML2.XMLHttp.3.0", "MSXML2.XMLHttp"],
+				    i, len;
+				for (i = 0,len = versions.length; i < len; i++) {
+					try{
+						new ActiveXObject(versions[i]);
+						arguments.callee.activeXString = versions[i];
+						break;
+					} catch(ex){
+						//
+					}
+				}
+			}
+			return new ActiveXObject(arguments.callee.activeXString);
+		}else {
+			throw new Error("No XHR object available.");
+		}
+	}
+
+	var xhr = createXHR();
+	xhr.open("GET", "http://study.163.com/webDev/attention.htm?", true);
+	xhr.onreadystatechange = function(){
+		if (xhr.readyState == 4) {
+			if ((xhr.status >= 200 && xhr.status < 300 || xhr.status == 304)) {
+				alert("successful:" + xhr.responseText);
+			}else {
+				alert("Request was unsuccessful:" + xhr.status);
+			}
+		}		
+	};
+	// xhr.open("GET", "http://study.163.com/webDev/attention.htm?", true);//也可以放在前面，如上
+	// xhr.setRequestHeader("myHeader","myValue");
+	xhr.send();
+
+	var myHeader = xhr.getResponseHeader("myHeader");
+	var allHeaders = xhr.getAllResponseHeaders();
+	alert(myHeader);
+	alert(allHeaders);
+</script>
+</html>

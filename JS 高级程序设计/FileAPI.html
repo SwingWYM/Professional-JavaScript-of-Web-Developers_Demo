@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+	<form>
+		<input type="file" multiple="multiple" id="files-list"></input>
+	</form>
+	<div id="output"></div>
+	<div id="progress"></div>
+</body>
+<script type="text/javascript" src="EventUtil.js"></script>
+<script type="text/javascript">
+	function blobSlice(blob, startByte, length){
+		if (blob.slice) {
+			return blob.slice(startByte, length);
+		}else if (blob.webkitSlice) {
+			return blob.webkitSlice(startByte, length);
+		}else if (blob.mozSlice) {
+			return blob.mozSlice(startByte, length);
+		}else{
+			return null;
+		}
+	}
+</script>
+<script type="text/javascript">
+	function createObjectURL(blob){//传入Blob对象或者File对象
+		if (window.URL) {
+			return window.URL.createObjectURL(blob);
+		}else if (window.webkitURL) {
+			return window.webkitURL.createObjectURL(blob);
+		}else {
+			return null;
+		}
+	}
+
+	//释放URL的内存
+	function revokeObjectURL(url){
+		if (window.URL) {
+			return window.URL.revokeObjectURL(url);
+		}else if (window.webkitURL) {
+			return window.webkitURL.revokeObjectURL(url);
+		}
+	}
+</script>
+<script type="text/javascript">
+	var fileList = document.getElementById('files-list');
+	EventUtil.addHandler(fileList,"change",function (event) {
+		var files = EventUtil.getTarget(event).files,
+			i = 0,
+			len = files.length,
+			info = '',
+			output = document.getElementById('output'),
+			progress = document.getElementById('progress'),
+			type = 'default',
+			reader = new FileReader(),
+			blob = blobSlice(files[0], 0, 32),
+			url = createObjectURL(files[0]);
+
+			//输出文件信息
+		while (i < len) {
+			console.log(files[i].name + ' (' + files[i].type + ', ' + files[i].size + ' bytes)');
+			i++;
+		}
+
+		//FileReader类型，读取文件中的数据
+		// if (/image/.test(files[0].type)) {
+		// 	reader.readAsDataURL(files[0]);
+		// 	type = 'image';
+		// }else {
+		// 	reader.readAsText(files[0]);
+		// 	type = "text";
+		// }
+
+		// reader.onerror = function(){
+		// 	output.innerHTML = 'Could not read file, error code is ' + reader.error.code;
+		// };
+
+		// reader.onprogress = function(event){
+		// 	if (event.lengthComputable) {
+		// 		progress.innerHTML = event.loaded + '/' + event.total;
+		// 	}
+		// };
+
+		// reader.onload = function(){
+		// 	var html = '';
+
+		// 	switch(type) {
+		// 		case 'image':
+		// 			html = "<img src='" + reader.result + "'>";
+		// 			break;
+		// 		case 'text':
+		// 			html = reader.result;
+		// 			break;	
+		// 	}
+		// 	output.innerHTML = html;
+		// }
+
+		//读取部分内容
+		// if (blob) {
+		// 	reader.readAsText(blob);
+
+		// 	reader.onerror = function(){
+		// 		output.innerHTML = 'Could not read file, error code is ' + reader.error.code;
+		// 	};
+
+		// 	reader.onload = function(){
+		// 		output.innerHTML = reader.result;
+		// 	};
+		// }else {
+		// 	alert("Your browser doesn't suppor slice().")
+		// }
+
+		if (url) {
+			if (/image/.test(files[0].type)) {
+				output.innerHTML = "<img src='" + url + "'>";
+			}else {
+				output.innerHTML = 'Not an image.';
+			}
+		}else {
+			output.innerHTML = 'Your browser does not suppor object URLs';
+		}
+	});
+</script>
+</html>

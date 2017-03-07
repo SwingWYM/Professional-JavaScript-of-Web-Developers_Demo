@@ -1,0 +1,24 @@
+#richedit{border: 2px solid #bbb;height: 560px;background-color: #fff;overflow: hidden;}
+#toolbar{height: 30px;background-color: #E8E8E8;border-bottom: 2px solid #bbb;position: relative;z-index: 100px;}
+#content{height: 530px;padding: 8px;overflow: auto;border: 0;margin-top: -3px;}
+#toolbar .divide{display: inline-block;vertical-align: top;margin-top: 8px;color: #ccc;}
+#toolbar .unit{width: 20px;height: 20px;margin-top: 5px;background-color: #fff;display: inline-block;margin-left: 3px;margin-right: 3px;background: url(richEditer.png);}
+#toolbar .unit:hover{cursor: pointer;background-color: #d0d0d0;}
+#toolbar .empty{margin-left: 12px;background-position: -267px -1px;}
+#toolbar .repeal{background-position: -218px -1px;}
+#toolbar .reform{background-position: -241px -1px;}
+#toolbar .bold{background-position: -1px -1px;}
+#toolbar .ita{background-position: -26px -1px;}
+#toolbar .under{background-position: -51px -1px;}
+#toolbar .strick{background-position: -74px -1px;}
+#toolbar .num{background-position: -98px -1px;}
+#toolbar .dote{background-position: -122px -1px;}
+#toolbar .color{background-position: -295px -1px;}
+#toolbar .acce{background-position: -146px 0px;}
+#toolbar .pic{background-position: -170px -1px;}
+#toolbar .formula{background-position: -194px -1px}
+#toolbar .select{height: 20px;display: inline-block;font-size: 12px;vertical-align: top;margin-top: 5px;line-height: 20px;padding:0 18px 0 8px;background: url(richEditer.png);background-color: #fff;border: 1px solid #ccc;border-radius: 1px;color: #bbb;margin-left: 5px;margin-right: 5px;}
+#toolbar .select:hover{cursor: pointer;}
+#toolbar .code{width: 50px;background-position: 53px -49px;}
+#toolbar .size{width: 30px;background-position: 33px -49px;}
+#toolbar .clicked{background-color: #d0d0d0;}

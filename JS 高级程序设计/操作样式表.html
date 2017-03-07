@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<style type="text/css">
+		div{font-size: 20px;color: red;}
+	</style>
+</head>
+<body>
+	<div>ddd</div>
+</body>
+<script type="text/javascript">
+//
+	// var sheet = null;
+	// for(var i = 0,len = document.styleSheets.length;i < len; i++){
+	// 	alert(len);
+	// 	sheet = document.styleSheets[i];
+	// 	alert(sheet.href);
+		
+	// }
+//css规则
+	// var sheet = document.styleSheets[1];
+	// var rules = sheet.cssRules || sheet.rules;
+	// var rule = rules[0];
+	// alert(rule.selectorText);
+	// alert(rule.style.cssText);//类似于元素的style.cssText
+	// alert(rule.cssText);
+
+	var sheet = document.styleSheets[0];
+	alert(sheet.href);
+	alert(sheet.cssRules);
+	var rules = sheet.cssRules || sheet.rules;//外部文件引入有的浏览器可以有的不可以。
+	var rule = rules[0];
+	alert(rule.selectorText);
+	alert(rule.style.cssText);//类似于元素的style.cssText
+	alert(rule.cssText);
+</script>
+</html>

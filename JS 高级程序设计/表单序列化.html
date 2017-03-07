@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<form id="myForm">
+		<select name="select">
+			<option value="cake">Cake</option>
+			<option>Milk</option>
+		</select>
+		<select id="select1" name="select1" multiple>
+			<option value="cace1">Cake1</option>
+			<option>Milk1</option>
+		</select>
+		<fieldset>
+			<input type="checkbox" name="food1" value="a">a</input>
+			<input type="checkbox" name="food1" value="b">b</input>
+		</fieldset>
+		<fieldset>
+			<input type="radio" name="food" value="c">c</input>
+			<input type="radio" name="food" value="d">d</input>
+		</fieldset>
+		<input type="button" id="btn"></input>
+	</form>
+</body>
+<script type="text/javascript" src="EventUtil.js"></script>
+<script type="text/javascript">
+	var form = document.getElementById('myForm');
+	var button = document.getElementById('btn');
+	// var select1 = document.getElementById('select1');
+	// select1.options[0].selected = true;
+	// select1.options[1].selected = true;
+	function serialize(form){
+		var parse = [],
+		field = null,
+			i,
+			len,
+			j,
+			optLen,
+			option,
+			optValue;
+		for(i = 0, len = form.elements.length; i < len; i++){
+			field = form.elements[i];
+
+			switch(field.type) {
+				case "select-one":
+				case "select-multiple":
+					if (field.name.length) {
+						for (j = 0 ,optLen = field.options.length; j < optLen; j++) {
+							option = field.options[j];
+							if (option.selected) {
+								optValue = '';
+								if (option.hasAttribute) {
+									optValue = (option.hasAttribute('value') ? option.value : option.text);
+								}else{
+									optValue = (option.attributes('value') ? option.value : option.text);
+								}
+								parse.push(encodeURIComponent(field.name) + '=' + encodeURIComponent(optValue));
+							}
+						}
+					}
+					break;
+				case undefined:
+				case "file":
+				case "submit":
+				case "reset":
+				case "button":
+					break;
+				case "checkbox":
+				case "radio":
+					if (!field.checked) {
+						break;
+					}
+				default:
+					if (field.name.length) {
+						parse.push(encodeURIComponent(field.name) + '=' + encodeURIComponent(field.value));
+					}
+			}
+		}
+		return parse.join('&');
+	}
+
+	EventUtil.addHandler(button,'click',function(event){
+		var formSerial = serialize(form);
+		alert(formSerial);
+		alert(typeof formSerial);
+	})
+	
+</script>
+</html>

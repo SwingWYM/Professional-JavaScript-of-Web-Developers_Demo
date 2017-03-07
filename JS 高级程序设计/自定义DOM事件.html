@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div id="myDiv"></div>
+	<button id="myButton"></button>
+</body>
+<script type="text/javascript" src="EventUtil.js"></script>
+<script type="text/javascript">
+	var div = document.getElementById('myDiv'),
+    button = document.getElementById('myButton'),
+	event,
+	event1,
+	event2;
+
+	EventUtil.addHandler(div,'myevent',function(event){
+		alert("DIV:" + event.detail);
+	});
+	EventUtil.addHandler(document,'myevent',function(event){
+		alert('document:' + event.detail);
+	});
+	if (document.implementation.hasFeature('CustomEvents', '3.0')) {
+		event = document.createEvent('CustomEvent');
+		event.initCustomEvent('myevent',true,false,"Hello world!");
+		// event.initCustomEvent('myevent',false,false,"Hello world!");
+		div.dispatchEvent(event);
+	}
+
+
+	//这里的click，一开始是自定义的click事件，这个名字由用户自己定义，后面点击触发的click是浏览器的系统事件。
+	EventUtil.addHandler(button,'click',function(event1){
+		alert('aaa');
+	})
+	event1 = document.createEvent('MouseEvents');
+	event1.initMouseEvent('click',true,true,document.defaultView,0,0,0,0,0,false,false,false,false,0,null);
+	button.dispatchEvent(event1);
+
+	EventUtil.addHandler(document,'keydown',function(event2){
+		alert('keydown');
+	})
+	event2 = document.createEvent('KeyboardEvent');
+	event2.initKeyboardEvent('keydown',true,true,document.defaultView,"a",0,"shift",0);
+	button.dispatchEvent(event2);//绑定给哪个元素，哪个元素就是target。
+</script>
+</html>

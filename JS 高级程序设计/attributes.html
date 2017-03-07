@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div class="a" id="b"></div>
+</body>
+<script type="text/javascript">
+	var element = document.getElementById('b')
+	function outputAttributes(element){
+		var pairs = new Array(),
+			attrName,
+			attrValue,
+			i,
+			len;
+		for(i = 0,len = element.attributes.length;i<len;i++){
+			attrName = element.attributes[i].nodeName
+			attrValue = element.attributes[i].nodeValue;
+			pairs.push(attrName + "=\"" + attrValue + "\"")
+		}
+		alert(pairs)
+		alert(pairs.join(" "))
+	}
+	outputAttributes(element);
+</script>
+</html>

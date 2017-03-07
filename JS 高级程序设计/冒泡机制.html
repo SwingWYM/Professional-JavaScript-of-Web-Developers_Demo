@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div id="myDiv">
+		<span id="mySpan">I'm a div</span>
+	</div>
+</body>
+<script type="text/javascript" src="EventUtil.js"></script>
+<script type="text/javascript">
+	var div = document.getElementById('myDiv'),
+		span = document.getElementById('mySpan');
+
+	EventUtil.addHandler(div,'click',function(event){
+		event = EventUtil.getEvent(event);
+		alert(event.type);
+
+	});
+	EventUtil.addHandler(span,'click',function(event){
+		event = EventUtil.getEvent(event);
+		alert(event.type);
+		event.stopPropagation();//没有这句将会出现两个警告框
+	})
+</script>
+</html>

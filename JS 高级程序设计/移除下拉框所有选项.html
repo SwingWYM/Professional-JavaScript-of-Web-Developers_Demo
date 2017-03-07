@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<select id="selectLocation">
+		<option>1</option>
+		<option>2</option>
+		<option>3</option>
+	</select>
+</body>
+<script type="text/javascript">
+	var select = document.getElementById('selectLocation');
+	function clearSelectBox(select){
+		for (var i = 0, len = select.options.length; i<len; i++) {
+			select.remove(0);
+		}
+	}
+	clearSelectBox(select);
+</script>
+</html>

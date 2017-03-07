@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	function specialArray() {
+		var values = new Array();
+		values.name = 'Bob';
+		values.push.apply(values,arguments);
+		values.toPipeString = function(){
+			return this.join('|');
+		};
+		return values;
+	}
+
+	var colors = new specialArray('red','blue');
+	console.log(colors.toPipeString());
+	console.log(colors.constructor);//Array
+	console.log(colors instanceof specialArray);//false
+	console.log(colors instanceof Array);//true
+	console.log(colors.name);
+</script>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+	<div class="video">
+		<video id="player" controls="true" poster="movie.jpg" src="movie.mp4" width="300" height="200">
+			Video player not available.
+		</video>
+	</div>
+	<div class="controls">
+		<input type="button" value="Play" id="video-btn"></input>
+		<span id="curtime">0</span>/<span id="duration">0</span>
+	</div>
+</body>
+<script type="text/javascript" src="EventUtil.js"></script>
+<script type="text/javascript">
+	var player = document.getElementById('player'),
+		btn = document.getElementById('video-btn'),
+		curtime = document.getElementById('curtime'),
+		duration = document.getElementById('duration');
+
+		duration.innerHTML = player.duration;//无法获取
+		EventUtil.addHandler(player,"loadedmetadata",function(event){
+			duration.innerHTML = Math.round(player.duration);
+		});//可以获取！！！！！
+
+		EventUtil.addHandler(btn,'click',function(event){
+			if (player.paused) {
+				player.play();
+				btn.value = "Pause";
+			}else{
+				player.pause();
+				btn.value = "Play"
+			}
+		});
+
+		setInterval(function(){
+			// curtime.innerHTML = player.currentTime;
+			curtime.innerHTML = Math.round(player.currentTime);
+		},1000)
+</script>
+</html>

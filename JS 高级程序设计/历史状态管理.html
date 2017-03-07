@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+	<input type="button" value="35选7" id="input1">
+	<div id="div1"></div>
+</body>
+<script type="text/javascript" src="EventUtil.js"></script>
+<script type="text/javascript">
+	// history.pushState({name:"Swing"},"Swing page", "Frame.html");
+	EventUtil.addHandler(window, 'popstate', function(event){
+		var state = event.state;
+		alert(state);
+		if (state) {
+			alert(state);
+		}
+	})
+</script>
+</html>

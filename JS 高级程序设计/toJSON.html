@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	var book = {
+		"title":"Profeissional javascript",
+		authors:[
+			"Nicholas"
+		],
+		edition:3,
+		year:2011
+		// toJSON:function(){
+		// 	return this.title;
+		// }//用toJSON函数可以自定义
+	};
+	var jsonText = JSON.stringify(book);
+	console.log(jsonText);
+	var bookCopy = JSON.parse(jsonText);
+	console.log(bookCopy);
+</script>
+</html>

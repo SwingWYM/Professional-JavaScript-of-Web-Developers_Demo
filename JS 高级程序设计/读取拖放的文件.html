@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+	<div id="droptarget" style="width: 200px;height: 200px;border: 1px solid red;"></div>
+	<div id="output"></div>
+</body>
+<script type="text/javascript" src="EventUtil.js"></script>
+<script type="text/javascript">
+	var droptarget = document.getElementById('droptarget');
+	function handleEvent(event){
+		var info = '',
+			output = document.getElementById('output'),
+			data, xhr,
+			files, i, len;
+
+		EventUtil.preventDefault(event);
+
+		if (event.type == 'drop') {
+			//使用XHR上传文件
+			data = new FormData()
+
+			files = event.dataTransfer.files;//原始的拖放会通过浏览器下载，但是改写了drop后就不会下载
+			i = 0;
+			len = files.length;
+
+			while (i < len) {
+				data.append('file' + i, files[i]);//*****
+				info += files[i].name +' (' + files[i].type + ', ' + files[i].size + ' bytes)<br>';
+				i++;
+			}
+
+			//*****
+			xhr = new XMLHttpRequest();
+			xhr.open("post", "ss.php", true);
+			xhr.onreadystatechange = function(){
+				if (xhr.readState == 4) {
+					alert(xhr.responseText);
+				}
+			};
+			xhr.send(data);
+
+			output.innerHTML = info;
+		}
+	}
+
+	EventUtil.addHandler(droptarget,'dragenter', handleEvent);
+	EventUtil.addHandler(droptarget, 'dragover', handleEvent);
+	EventUtil.addHandler(droptarget, 'drop', handleEvent);
+</script>
+</html>

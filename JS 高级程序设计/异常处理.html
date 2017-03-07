@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+</head>
+<body>
+
+<script>
+	function myFunction()
+	{
+		try
+		{ 
+			var x=document.getElementById("demo").value;
+			if(x=="")    throw "值为空";
+			if(isNaN(x)) throw "不是数字";
+			if(x>10)     throw "太大";
+			if(x<5)      throw new Error("太小");//throw "太小";//throw new Error("太小");和throw "太小";显示方式不一样，前者在字符串前面有Error:
+		}
+		catch(err)
+		{
+			var y=document.getElementById("mess");
+			y.innerHTML="错误：" + err + "。";
+		}
+	}
+
+
+
+
+	function process(values){
+		if(!(values instanceof Array)){
+			throw new Error("process():Argument must be an array");
+		}
+		values.sort();
+
+		for(var i = 0,len = values.length; i<len;i++){
+			if (values[i] > 100) {
+				alert(values[i]);
+			}
+		}
+	}
+
+	process([1,5,104]);
+	process('d');//此处抛出错误，导致后面的代码不再执行,上一个例子的throw被try catch 捕获了。
+	process([3,104,5,200]);
+</script>
+
+<h1>我的第一个 JavaScript 程序</h1>
+<p>请输入 5 到 10 之间的数字：</p>
+<input id="demo" type="text">
+<button type="button" onclick="myFunction()">测试输入值</button>
+<p id="mess"></p>
+
+</body>
+</html>

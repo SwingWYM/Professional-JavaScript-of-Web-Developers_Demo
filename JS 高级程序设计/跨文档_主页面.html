@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Post Message</title>
+</head>
+<body>
+    <div style="width:200px; float:left; margin-right:200px;border:solid 1px #333;">
+        <div id="color">Frame Color</div>
+    </div>
+    <div>
+        <iframe id="child" src="Frame.html"></iframe>
+    </div>
+
+    <script type="text/javascript">
+
+        window.onload=function(){
+            window.frames[0].postMessage('getcolor','Frame.html');//由于这里的目标源不对，导致页面刚加载的时候，主页面左边的框没有颜色
+        }
+
+        window.addEventListener('message',function(e){
+            var color=e.data;
+            // alert(e.origin);//无法获取到源
+            document.getElementById('color').style.backgroundColor=color;
+            // alert(e.source);
+        },false);
+    </script>
+</body>
+</html>

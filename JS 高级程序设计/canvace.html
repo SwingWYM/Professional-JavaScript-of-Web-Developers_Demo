@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<canvas id="drawing" height="800"></canvas>
+</body>
+<script type="text/javascript">
+	var drawing = document.getElementById('drawing');
+
+	if (drawing.getContext) {
+		var context = drawing.getContext('2d');
+
+		context.fillStyle = '#ff0000';
+		context.fillRect(10,10,10,10);
+
+		context.fillStyle = 'rgba(0,0,255,0.5)';
+		context.fillRect(30,30,30,30);
+
+		context.fillStyle = '#ff0000';
+		context.fillRect(200,200,200,200);
+
+		// context.beginPath();
+		// context.moveTo(10,10);
+		// context.arcTo(60,60,30,80,60);
+		// context.stroke();
+		// context.fill();
+		context.beginPath();
+		context.arc(100,100,99,0,2 * Math.PI,false);
+		context.moveTo(194,100);//不加这句在两个圆之间会有一条连线
+		context.arc(100,100,94,0,2*Math.PI,false);
+		context.stroke();
+
+	}
+</script>
+</html>

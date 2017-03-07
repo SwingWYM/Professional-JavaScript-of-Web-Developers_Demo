@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<form>
+		<input type="text" name="textbox1" value="I'm a winner!"></input>
+		<textarea>I'm strong</textarea>
+	</form>
+</body>
+<script type="text/javascript" src="EventUtil.js"></script>
+<script type="text/javascript">
+	var textbox = document.forms[0].elements['textbox1'];
+
+	//获得焦点的时候全选
+	EventUtil.addHandler(textbox,'focus',function(event){
+		event = EventUtil.getEvent(event);
+		target = EventUtil.getTarget(event);
+		target.select();
+	});
+	//选择的时候的操作，可以只是一部分文字
+	// EventUtil.addHandler(textbox,'select',function(event){
+	// 	alert('Text Selected' + textbox.value);
+	// });
+</script>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<div id="myDiv" style="width: 500px;height: 300px;background: red;"></div>
+</body>
+<script type="text/javascript">
+	function throttle(method, context){
+		clearTimeout(method.tId);
+		method.tId = setTimeout(function(){
+			method.call(context);
+		}, 100);
+	}
+
+	function resizeDiv(){
+		var div = document.getElementById('myDiv');
+		div.style.height = div.offsetWidth + 'px';
+	}
+	window.onresize = function(){   //拖动浏览器窗口的时候，如果以较快的速度（小于100ms）拖动，则一直不会改变，速度慢下来，或者停止拖动，则执行。
+		throttle(resizeDiv);
+	}
+</script>
+</html>

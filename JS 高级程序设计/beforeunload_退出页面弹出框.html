@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript" src="EventUtil.js"></script>
+<script type="text/javascript">
+	EventUtil.addHandler(window,"beforeunload",function(event){
+		event = EventUtil.getEvent(event);
+		var message = "I'm really going to miss you if you go";
+		event.returnValue = message;
+		return message;
+		// event.returnValue = false;
+	})
+
+	EventUtil.addHandler(document,"readystatechange",function(event){
+		alert(document.readyState);
+	})
+	// function s(){
+	// 	var a = 9
+	// }
+	// alert(a);
+</script>
+</html>

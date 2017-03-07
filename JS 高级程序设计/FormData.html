@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<form id="myForm">
+		<select name="select">
+			<option value="cake">Cake</option>
+			<option>Milk</option>
+		</select>
+		<select id="select1" name="select1" multiple>
+			<option value="cace1">Cake1</option>
+			<option>Milk1</option>
+		</select>
+		<fieldset>
+			<input type="checkbox" name="food1" value="a">a</input>
+			<input type="checkbox" name="food1" value="b">b</input>
+		</fieldset>
+		<fieldset>
+			<input type="radio" name="food" value="c">c</input>
+			<input type="radio" name="food" value="d">d</input>
+		</fieldset>
+		<input type="button" id="btn"></input>
+	</form>
+</body>
+<script type="text/javascript" src="EventUtil.js"></script>
+<script type="text/javascript" src="createXHR.js"></script>
+<script type="text/javascript">
+	var form = document.getElementById('myForm');
+	var button = document.getElementById('btn');
+	// var select1 = document.getElementById('select1');
+	// select1.options[0].selected = true;
+	// select1.options[1].selected = true;
+	EventUtil.addHandler(button,"click",function(event){
+		var xhr = createXHR();
+		xhr.onreadystatechange = function(){
+			if (xhr.readyState == 4) {
+				if ((xhr.status >= 200 && xhr.status <300) || xhr.status ==304) {
+					alert(xhr.responseText);
+				}else {
+					alert("unsuccessful:" + xhr.status)
+				}
+			}
+		};
+
+		xhr.open("POST","http://study.163.com/webDev/attention.htm?",true);
+		var data = new FormData(form);
+		alert(data['food']);
+		xhr.send(data);
+	})
+	
+	
+</script>
+</html>

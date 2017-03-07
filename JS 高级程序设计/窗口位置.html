@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<ul id="one">
+		<li>item 1</li>
+		<li>item 2</li>
+		<li>item 3</li>
+	</ul>
+</body>
+<script type="text/javascript">
+	var leftPos = (typeof window.screenLeft == 'number')?window.screenLeft : window.scrennX;
+	var topPos = (typeof window.screenTop == 'number')? window.screenTop : window.screenY;
+	// alert(leftPos);
+	// alert(topPos);
+	window.moveTo(0,0);
+	window.moveBy(0,100);
+</script>
+<script type="text/javascript">
+	var myList = document.getElementById('one');
+	var deepList = myList.cloneNode(true);
+	var shallowList = myList.cloneNode(false);
+	alert(deepList.childNodes[0].nodeValue)//空白
+	alert(deepList.childNodes[1].tagName)
+	alert(deepList.childNodes[2])
+	alert(deepList.childNodes[3])
+	alert(deepList.childNodes[4])
+	alert(deepList.childNodes[5])
+	alert(deepList.childNodes[6])
+	alert(deepList.childNodes.length);
+	alert(shallowList.childNodes.length)
+</script>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<button id="myBtn"></button>
+</body>
+<script type="text/javascript" src="EventUtil.js"></script>
+<script type="text/javascript">
+	var handler = {
+		message: "Event handler",
+		handleClick: function(event){
+			alert(this.message);
+		}
+	};
+
+	var btn = document.getElementById('myBtn');
+	handler.handleClick();
+
+	EventUtil.addHandler(btn,"click",handler.handleClick);
+	EventUtil.addHandler(btn,"click",function(event){
+		handler.handleClick(event);
+	})
+
+</script>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div id="status"></div>
+</body>
+<script type="text/javascript" src="createXHR.js"></script>
+<script type="text/javascript">
+	var xhr = createXHR();
+	xhr.onload = function(event){
+		var divStatus = document.getElementById('status');
+		if (event.lengthComputable) {
+			divStatus.innerHTML = 'Received ' + event.position + ' of ' + event.totalSize + ' bytes';
+		}
+	};
+	// xhr.open("GET", "http://study.163.com/webDev/couresByCategory.htm?pageNo=1&psize=20&type=10", true);
+	xhr.open("GET", "http://study.163.com/webDev/attention.htm?", true);
+	xhr.send(null);
+</script>
+</html>
