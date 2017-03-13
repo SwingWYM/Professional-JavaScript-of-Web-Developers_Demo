@@ -83,6 +83,8 @@
 
 	EventUtil.addHandler(button,'click',function(event){
 		var formSerial = serialize(form);
+		var data = new FormData(document.getElementById('myForm'))
+		console.log(data);
 		alert(formSerial);
 		alert(typeof formSerial);
 	})

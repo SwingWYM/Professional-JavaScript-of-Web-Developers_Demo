@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	// 先实现如何使用setTimeout每隔一秒打印递加的数字
+	for (var i = 0; i < 10; i++) {
+		setTimeout(function(num){
+			return function (){
+				console.log(num);
+			}
+		}(i),1000 * i)
+	}
+	// 实现如何使用setInterval每隔一秒打印递加的数字
+	i = 0;
+	loop = setInterval(function(){
+		console.log(i);
+		i ++ ;
+		if (i == 10) {
+			clearInterval(loop);
+		}
+	},1000)
+
+
+	// setTimeout实现setInterval，使用setTimeout的链式操作
+	i = 0;
+	setTimeout(function(){
+		console.log(i);
+		i++;
+
+		if (i < 10) {
+			setTimeout(arguments.callee,1000);
+		}
+		
+	},1000)
+
+	// setInterval实现setTimeout
+	var loop = setInterval(function(){
+		console.log('hello');
+		clearInterval(loop);
+	},1000)
+</script>
+</html>

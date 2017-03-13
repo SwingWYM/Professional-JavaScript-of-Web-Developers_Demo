@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>mouseover vs mouseenter</title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <style>
+	div{position:absolute;}
+  </style>
+ </head>
+
+ <body>
+	<div id="div1" style="height:100px;border:1px solid red">
+		 div1 div1 div1 div1 div1 div1 div1 div1
+		<div id="div2" style="left:50px;height:200px;border:1px solid red">
+			div2 div2 div2 div2 div2 div2 div2 
+			<div id="div3" style="left:100px;height:300px;border:1px solid red">
+				 div3 div3 div3 div3 div3 div3 div3 div3
+			</div>
+		</div>
+	</div>
+ </body>
+ <script type="text/javascript">
+ 	var div1 = document.getElementById('div1'),
+ 		div2 = document.getElementById('div2'),
+ 		div3 = document.getElementById('div3');
+ 	div1.addEventListener('mouseover',function(e){
+ 		console.log('div1');
+ 		if (e.stopPropagation) {
+ 			e.stopPropagation();
+ 		}else{
+ 			window.event.cancelBubble=true;
+ 		}
+
+ 	},false);
+ 	div2.addEventListener('mouseover',function(e){
+ 		console.log('div2');
+ 	},false);
+ 	div3.addEventListener('mouseover',function(e){
+ 		e.stopImmediatePropagation();//同时会阻止当前标签的同类型事件（例如click）
+ 		console.log('div3');
+ 		if (e.stopPropagation) {
+ 			e.stopPropagation();
+ 		}else{
+ 			window.event.cancelBubble=true;
+ 		}
+
+ 	},false);
+ </script>
+</html>
