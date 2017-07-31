@@ -28,24 +28,21 @@
  		div3 = document.getElementById('div3');
  	div1.addEventListener('mouseover',function(e){
  		console.log('div1');
- 		if (e.stopPropagation) {
- 			e.stopPropagation();
- 		}else{
- 			window.event.cancelBubble=true;
- 		}
+ 		
 
  	},false);
  	div2.addEventListener('mouseover',function(e){
  		console.log('div2');
  	},false);
  	div3.addEventListener('mouseover',function(e){
- 		e.stopImmediatePropagation();//同时会阻止当前标签的同类型事件（例如click）
+ 		// e.stopImmediatePropagation();//同时会阻止当前标签的同类型事件（例如click）
  		console.log('div3');
  		if (e.stopPropagation) {
  			e.stopPropagation();
  		}else{
  			window.event.cancelBubble=true;
  		}
+
 
  	},false);
  </script>

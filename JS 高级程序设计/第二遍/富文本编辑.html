@@ -1,0 +1,73 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<iframe name="richedit" id="richedit"></iframe>
+</body>
+<script type="text/javascript">
+	window.onload = function(){
+		var ifr = document.getElementById("richedit");
+
+		var doc = ifr.contentDocument || ifr.contentWindow.document; // W3C || IE
+
+		doc.designMode="on";
+	}
+</script>
+</html> -->
+
+
+<!-- 可以用iframe，也可以直接用contenteditable -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		#title{color: #000;font-weight: bold;}
+		button{margin-top: 10px;border-radius: 2px;border: 1px solid #000;background-color: #fff}
+		#edit{border: 1px solid #bbb;width: 100%;height: 300px;margin-top: 10px;}
+	</style>
+</head>
+<body>
+<div id="title">富文本编辑框</div>
+<button id="big">加大</button>
+<button id="red">红色</button>
+<button id="bold">加粗</button>
+ <div contenteditable="true" id="edit"></div>
+</body>
+<script type="text/javascript">
+	    function SetToBold () {
+            document.execCommand ('bold', false, null);
+        }
+        function SetToRed(){
+        	document.execCommand('backcolor',false,'red');
+        }
+        function SetToBig(){
+        	document.execCommand('fontsize',false,'7');
+        }
+        var big = document.getElementById('big');
+        var red = document.getElementById('red');
+        var bold = document.getElementById('bold')
+        big.addEventListener('click',SetToBig,false);
+        red.addEventListener('click',SetToRed,false);
+        bold.addEventListener('click',SetToBold,false);
+
+
+        function x(a,b){
+            arguments[1] = 2;
+            console.log(a);
+            console.log(b);
+            console.log(arguments[0]);
+            console.log(arguments[1]);
+            console.log(a + b);
+            console.log(arguments[0] + arguments[1]);
+            console.log(arguments.length);
+            arguments.length = 2;
+            console.log(arguments.length);
+            console.log(b);
+        }
+        x(1)
+</script>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	var a = [1,{a:2},3];
+	var b = a;
+	console.log(b);
+	b[0] = 7;
+	console.log(a);
+	//上面这种简单的赋值，只是浅拷贝，当改变b的时候，a也会被改变。
+
+	b = a.slice(0);
+	b[0] = 8;
+	b[1]['a'] = 9;
+	console.log(a);
+	//上面这种方式，可以实现一层的深度拷贝，但是当数组里面还有对象或者数组的时候，不适用。同样，b = a.concat()也是一样的
+
+
+	var a = [1,{a:2},3];
+	var b = JSON.parse(JSON.stringify(a));
+	console.log(a);
+	console.log(b);
+	b[0] = 6;
+	b[1]['a'] = 'l';
+	console.log(a);
+	console.log(b);
+	//上面这种方法可以实现深度拷贝，但是可能兼容性不是很好。
+	console.log(JSON.stringify(a));//[1,{"a":2},3]
+
+
+
+
+	function clone(obj){
+	    var objClone;
+	    if (obj instanceof Array) {
+	    	objClone = [];
+	    }
+	    else{
+	    	objClone = {};
+	    }
+	    for(var key in obj){
+	        if ( objClone[key] != obj[key] ){//似乎可有可无
+	            if ( typeof(obj[key]) == "object"){
+	                objClone[key] = clone(obj[key]);
+	            }else{
+	                objClone[key] = obj[key];
+	            }
+	        }
+	    }
+	    objClone.toString = obj.toString;
+	    objClone.valueOf = obj.valueOf;
+	    return objClone;
+	}
+	var a = [1,{a:2},3,[4]];
+	var b = clone(a);
+	console.log(a);
+	console.log(b);
+	b[0] = 'w';
+	b[1]['a'] = 'r';
+	console.log(a);
+	console.log(b);
+	//上面这种方法比较复杂，好处是浏览器兼容性好
+</script>
+</html>

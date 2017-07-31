@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+N<!DOCTYPE html>
 <html>
 <head>
 	<title></title>
@@ -9,6 +9,7 @@
 <script type="text/javascript">
 	//原型链继承。也可以对超类传递参数，不知是否有什么影响。
 	//最大的问题是，超类中引用类型的属性会在子类的prototype中。其实超类中所有的属性都会被子类的实例公用。
+	//还有一个问题是，无法将传入超类的参数通过子类传入
 	function superType(age) {
 		this.age = age;
 		this.color = ['red','blue'];
@@ -30,8 +31,8 @@
 	console.log(s.getName());
 	console.log(s.age);
 
-	//借用构造函数。最大的问题就是无法共用超类prototype当中的方法，导致超类定义方法
-	//必须在构造函数中，无法函数复用。
+	// //借用构造函数。最大的问题就是无法共用超类prototype当中的方法，导致超类定义方法
+	// //必须在构造函数中，无法函数复用。
 	function superType(name,age){
 		this.name = name;
 		this.age = age;
@@ -49,8 +50,8 @@
 	console.log(s.getName());//报错
 
 
-	//组合继承。当调用superType.call()的时候，就会将prototype当中的属性覆盖。
-	//使用最广泛的方式
+	// //组合继承。当调用superType.call()的时候，就会将prototype当中的属性覆盖。
+	// //使用最广泛的方式
 	//这种方式的缺陷是，无论什么情况下，都会两次调用超类构造函数。一次是创建子类的时候，另一次是子类构造函数内部，在实例化子类的时候被调用
 	function superType(name){
 		this.name = name;
@@ -83,6 +84,12 @@
 		age:26,
 		color : ['red']
 	}
+
+	var superType2 = function(){
+		this.name = 'Gorge2';
+		this.age = 24;
+	}
+
 	function createSub(obj){
 		function o(){
 
@@ -100,9 +107,11 @@
 	var sub1 = createSub(superType);
 	console.log(sub1.name);
 	sub1.name = 'hello';
-	sub1.color.push('green');
+	console.log(sub1.name);
+	console.log(sub1.age);
+	// sub1.color.push('green');
 
-	var sub2 = createSub2(superType);
+	var sub2 = createSub(superType);
 	console.log(sub2.color); 
 	//EcamaScript5新增了Object.create()方法来规范化了原型式继承。
 	//这个方法有两个参数，一个是用作新对象原型的对象，一个是新对象定义的额外属性的对象，第二个参数可选
@@ -158,10 +167,10 @@
 
 
 
-	//寄生组合式继承
-	//通过借用构造函数来继承属性，通过原型链的混成形式来继承方法。
-	//最理想的
-	//避免了在子类的prototype上创建不必要的多余的属性。
+	// //寄生组合式继承
+	// //通过借用构造函数来继承属性，通过原型链的混成形式来继承方法。
+	// //最理想的
+	// //避免了在子类的prototype上创建不必要的多余的属性。
 	function object(obj){
 		function o(){}
 		o.prototype = obj;

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+//动态原型模式
+	function Person(name,age,job){
+		this.name = name;
+		this.age = age;
+		this.job = job;
+		if (typeof this.sayName !== 'function') {
+			// Person.prototype.sayName = function(){
+			// 	console.log(this.name);
+			// }
+			Person.prototype = {//不能使用这种方式。这种动态的方法只有在构造函数初次被调用时才会执行对原型的操作，所以这样做会切断当前正在执行的实例与原型之间的联系。前面某些可以用原型字面量的方式是因为，在调用构造函数之前，原型已经创建好了。
+				constructor : Person,
+				sayName : function(){
+					console.log(this.name);
+				}
+			}
+		}
+	}
+
+	people = new Person('Bob',24,'teacher');
+	// people.sayName();
+	people2 = new Person('Bob2',25,'student');//原型字面量的方式会切断第一次调用构造函数创建的实例与原型之间的关系，但后面调用构造函数创建的实例不会，会直接连到新的原型上。
+	people2.sayName();//Bob2
+
+
+//寄生构造函数模式
+	function Person(name,age,job){
+		var o = new Object();
+		o.name = name;
+		o.age = age;
+		o.job = job;
+		o.sayName = function(){
+			console.log(this.name);
+		}
+
+		return o;
+	}
+	people = new Person('S',28,'tea');//可以new也可以new
+	console.log(people.constructor);//Object
+	console.log(people instanceof Person);//false
+	people.sayName();
+	
+</script>
+</body>
+</html>

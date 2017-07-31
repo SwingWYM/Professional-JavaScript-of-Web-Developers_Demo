@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	var database;
+	var request;
+	var users = [{a:001},{a:002}];
+	var indexedDB = window.indexedDB || window.webkitIndexedDB;
+	request = indexedDB.open('admin','2');
+	request.onerror = function(event){
+		console.log(event.target.errorCode);
+	}
+	request.onsuccess = function(event){
+		database = event.target.result;
+	}
+	request.onupgradeneeded = function(event){
+		var store = database.createObjectStore("users",{keyPath:"name"});
+		store.add(users[0]);
+	}
+
+
+	
+
+
+// function openDB (name,version) {
+// 		var version=version || 1;
+//         var request=window.indexedDB.open(name,version);
+//         request.onerror=function(e){
+//             console.log('OPen Error!');
+//         };
+//         request.onsuccess=function(e){
+//             myDB.db=e.target.result;
+//         };
+//         request.onupgradeneeded=function(e){
+//             var db=e.target.result;
+//             if(!db.objectStoreNames.contains('students')){
+//                 db.createObjectStore('students',{keyPath:"id"});
+//             }
+//             console.log('DB version changed to '+version);
+//         };
+//    }
+
+// var myDB={
+//     name:'test',
+//     version:1,
+//     db:null
+// };
+// openDB(myDB.name,myDB.version);
+</script>
+</body>
+</html>

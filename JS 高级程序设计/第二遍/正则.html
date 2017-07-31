@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	var reg1 = /^(?=.*[0-9]+.*)(?=.*[a-z]+.*)(?=.*[A-Z].*)(?!.*[^a-zA-Z0-9].*).{6,}$/;
+
+	//当且仅当包含数字和字母
+	var reg2 = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*[^a-zA-Z0-9].*).{8,10}$/
+
+	var regex = /(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{8,30}/;
+
+	console.log(reg1.test('1244U3i'));
+	console.log(regex.test('788439u_i'));
+	console.log(reg2.test('1234U69'));
+</script>
+</html>

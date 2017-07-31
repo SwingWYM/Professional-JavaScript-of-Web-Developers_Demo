@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	var  processor = {
+		timeoutId : null,
+		performProcessing : function(){
+			console.log('a');
+		},
+		process : function(){
+			clearTimeout(this.timeoutId);
+			var that = this;
+			this.timeoutId = setTimeout(function(){
+				that.performProcessing();
+			},1)
+		}
+	};
+	processor.process();
+	processor.process();
+	processor.process();
+	processor.process();
+	processor.process();
+	processor.process();
+	processor.process();
+	processor.process();
+	processor.process();
+	processor.process();
+	processor.process();
+	processor.process();
+	processor.process();
+	processor.process();
+	processor.process();
+	processor.process();
+	processor.process();
+	processor.process();
+	processor.process();
+
+</script>
+</body>
+</html>

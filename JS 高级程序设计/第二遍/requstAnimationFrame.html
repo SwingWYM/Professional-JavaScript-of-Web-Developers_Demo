@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		#anim {
+		  position:absolute;
+		  left:0px;
+		  width:150px;
+		  height:150px;
+		  background: blue;
+		  font-size: larger;
+		  color: white;
+		  border-radius: 10px;
+		  padding: 1em;
+		}
+	</style>
+</head>
+<body>
+<div id="test" style="width:1px;height:17px;background:#0f0;">0%</div>
+<input type="button" value="Run" id="run"/>
+<div id="anim">点击运行动画</div> 
+<script type="text/javascript">
+	window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+	var start = null;
+	var ele = document.getElementById("test");
+	var progress = 0;
+
+	function step1(timestamp) {
+		var drawStart = Date.now(),
+			diff = drawStart - startTime;
+		if (diff > 1000) {
+			progress += 1;
+		    ele.style.width = progress + "%";
+		    ele.innerHTML=progress + "%";
+		    startTime = drawStart;
+		}
+		if (progress < 100) {
+		    requestAnimationFrame(step1);
+		}
+
+	}
+	function step2(timestamp) {
+		var drawStart = Date.now(),
+			diff = drawStart - startTime;
+		progress += diff/200;
+	    ele.style.width = progress + "%";
+	    ele.innerHTML=parseInt(progress) + "%";
+	    startTime = drawStart;
+		
+		if (progress < 100) {
+		    requestAnimationFrame(step2);
+		}
+
+	}	
+
+	function step3(timestamp) {
+
+		console.log(timestamp);
+		progress = timestamp/200;
+	    ele.style.width = progress + "%";
+	    ele.innerHTML=parseInt(progress) + "%";
+		
+		if (progress < 100) {
+		    requestAnimationFrame(step3);
+		}
+
+	}
+
+	function step(timestamp) {
+		progress += 1;
+	    ele.style.width = progress + "%";
+	    ele.innerHTML=progress + "%";
+		
+		if (progress < 100) {
+		    requestAnimationFrame(step);
+		}
+
+	}
+
+
+	var startTime = window.mozAnimationStartTime || Date.now();
+
+	requestAnimationFrame(step3);
+	document.getElementById("run").addEventListener("click", function() {
+	    ele.style.width = "1px";
+	    progress = 0;
+	    requestAnimationFrame(step3);
+	}, false);
+
+
+
+
+
+	// var elem = document.getElementById("anim");
+
+	// var startTime = undefined;
+	 
+	// function render(time) {
+	//   if (time === undefined)
+	//     time = Date.now();
+	//   if (startTime === undefined)
+	//     startTime = time;
+	//   elem.style.left = ((time - startTime)/10 * 3) + "px";
+	// }
+	// elem.onclick = function() {
+
+	//     (function animloop(){
+	//       render();
+	//       if (parseInt(elem.style.left) <= 600) {
+	//       	requestAnimationFrame(animloop);
+	//       }
+	      
+	//     })();
+
+	// };
+
+</script>
+</body>
+</html>
+
+
+ 

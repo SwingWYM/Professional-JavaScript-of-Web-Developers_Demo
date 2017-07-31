@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+</head>
+	<script type="text/javascript">
+		function hello(name) {
+			alert("hello:" + name);
+		}
+	</script>
+<body>
+
+	<!-- <iframe src="javascript:hello('Swing')"></iframe>这样是错误的 -->
+	
+	<iframe src="javascript:alert(2)"></iframe>
+	<div onclick="hello('Swing')">hello</div>
+</body>
+
+</html>
